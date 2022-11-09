@@ -1,5 +1,6 @@
 import React from 'react';
 import HeroArea from './HeroArea';
+import HomePageService from './HomePageService';
 import IntroductionArea from './IntroductionArea';
 
 const Home = () => {
@@ -10,6 +11,9 @@ const Home = () => {
             </div>
             <div>
                 <IntroductionArea></IntroductionArea>
+            </div>
+            <div>
+                <HomePageService></HomePageService>
             </div>
         </div>
     );
