@@ -30,8 +30,6 @@ const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) =
                 </td>
                 <td className="py-10 px-2 border-b border-gray-200 bg-white grid lg:grid-cols-2 gap-3">
                     <label htmlFor="my-modal-3" onClick={() => handleUpdateUser(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">{status ? status : "Pending"}</label>
-
-                    {/* <button onClick={() => handleStatusUpdate(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">{status ? status : "Pending"}</button> */}
                     <button onClick={() => handleDelete(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">Delete</button>
                 </td>
                 <input type="checkbox" id="my-modal-3" className="modal-toggle" />
