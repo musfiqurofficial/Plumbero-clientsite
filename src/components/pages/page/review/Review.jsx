@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import useTitle from '../../../../hooks/useTitle';
 
 const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) => {
