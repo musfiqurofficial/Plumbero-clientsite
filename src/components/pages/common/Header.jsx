@@ -7,13 +7,6 @@ import UserLottie from '../../lottie/UserLottie';
 const Header = () => {
 
     const { user, logOut } = useContext(AuthContext);
-    const [orders, serOrders] = useState([]);
-
-    useEffect(() => {
-        fetch(`http://localhost:5000/services/?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => serOrders(data))
-    }, [user?.email])
 
     const handleLogOut = () => {
         logOut()
