@@ -19,7 +19,7 @@ const IntroductionArea = () => {
                 </div>
                 <div>
                     <div className=' my-20 ml-10'>
-                        <h6 className='lg:text-base lg:font-bold my-1'>INTRODUCTION OF US</h6>
+                        <h6 className='lg:text-base lg:font-bold my-1'>INTRODUCTION OF US!</h6>
                         <h1 className='lg:text-5xl text-3xl font-bold my-2'>Know About Why We Are Best In Plumbing !</h1>
                         <p className='w-9/12 my-5'>Maxime aliquam deleniti venenatis deleniti. Adipisci maecenas officiis lorem adipisicing veritatis ut et! Dictumst, faucibus, accusamus scelerisque.</p>
                         <div className='px-10 '>

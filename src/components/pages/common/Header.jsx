@@ -1,14 +1,30 @@
-import React from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link, NavLink } from 'react-router-dom';
+import { AuthContext } from '../../../AuthProvider/AuthProvider';
 import ButtonLottie from '../../lottie/ButtonLottie';
+import UserLottie from '../../lottie/UserLottie';
 
 const Header = () => {
+
+    const { user, logOut } = useContext(AuthContext);
+    const [orders, serOrders] = useState([]);
+
+    useEffect(() => {
+        fetch(`http://localhost:5000/services/?email=${user?.email}`)
+            .then(res => res.json())
+            .then(data => serOrders(data))
+    }, [user?.email])
+
+    const handleLogOut = () => {
+        logOut()
+            .then(() => { })
+            .catch(error => console.error(error))
+    }
 
     const menuItems = <>
         <li><NavLink to="/home">Home</NavLink></li>
         <li><NavLink to="/blog">Blog</NavLink></li>
         <li><NavLink to="/services">Services</NavLink></li>
-        <li><NavLink to="/reviews">Reviews</NavLink></li>
         <li><NavLink to="/contact">Contact</NavLink></li>
     </>
 
@@ -33,23 +49,30 @@ const Header = () => {
                 </div>
                 <div className="navbar-end">
                     <Link to='/loginForm' className="w-1/3"><ButtonLottie></ButtonLottie></Link>
-                    <div className="dropdown dropdown-end">
-                        <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                            <div className="w-10 rounded-full">
-                                <img src="https://placeimg.com/80/80/people" />
+                    {
+                        user?.uid ?
+                            <div className="dropdown dropdown-end">
+                                <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                                    <div className="w-10 rounded-full">
+                                        <img src={user?.photoURL ? user?.photoURL : "https://placeimg.com/80/80/people"} alt='' />
+                                    </div>
+                                </label>
+                                <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
+                                    <li>
+                                        <span className="text-xs font-light">{user.email}</span>
+                                    </li>
+                                    <li><NavLink to="/reviews">My Reviews</NavLink></li>
+                                    <li><NavLink to="/addService">Add Service</NavLink></li>
+                                    <li><NavLink onClick={handleLogOut} to='/login'>Log Out</NavLink></li>
+                                </ul>
                             </div>
-                        </label>
-                        <ul tabIndex={0} className="menu menu-compact dropdown-content mt-3 p-2 shadow bg-base-100 rounded-box w-52">
-                            <li>
-                                <a className="justify-between">
-                                    Profile
-                                    <span className="badge">New</span>
-                                </a>
-                            </li>
-                            <li><a>Settings</a></li>
-                            <li><a>Logout</a></li>
-                        </ul>
-                    </div>
+                            :
+                            <Link to='/login' className="">
+                                <div className='w-10'>
+                                    <UserLottie></UserLottie>
+                                </div>
+                            </Link>
+                    }
 
                 </div>
             </div>
