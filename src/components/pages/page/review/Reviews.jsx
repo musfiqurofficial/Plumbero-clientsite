@@ -8,7 +8,7 @@ const Reviews = () => {
     const [storedUser, setStoredUser] = useState({});
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://assingment-11-server-seven.vercel.app/reviews')
             .then(res => res.json())
             .then(data => {
                 console.log(data)
@@ -21,7 +21,7 @@ const Reviews = () => {
 
     const handleUpdateUser = event => {
         event.preventDefault();
-        fetch(`http://localhost:5000/reviews/${storedUser._id}`, {
+        fetch(`https://assingment-11-server-seven.vercel.app/reviews/${storedUser._id}`, {
             method: 'PUT',
             headers: {
                 'content-type': 'application/json'
@@ -49,7 +49,7 @@ const Reviews = () => {
     const handleDelete = id => {
         const proceed = window.confirm('Are you sure, you want to cancel this order!')
         if (proceed) {
-            fetch(`http://localhost:5000/reviews/${id}`, {
+            fetch(`https://assingment-11-server-seven.vercel.app/reviews/${id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())
@@ -65,7 +65,7 @@ const Reviews = () => {
     }
 
     useEffect(() => {
-        fetch('http://localhost:5000/reviews')
+        fetch('https://assingment-11-server-seven.vercel.app/reviews')
             .then(res => res.json())
             .then(data => {
                 console.log(data)

@@ -2,6 +2,7 @@ import { createBrowserRouter } from "react-router-dom";
 import ErrorPage from "../../error/ErrorPage";
 import AddService from "../addService/AddService";
 import Main from "../layout/Main";
+import Blog from "../pages/blog/Blog";
 import Login from "../pages/common/login/Login";
 import LoginForm from "../pages/common/login/LoginForm";
 import Register from "../pages/common/login/Register";
@@ -22,17 +23,21 @@ export const router = createBrowserRouter([
             {
                 path: '/',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/services/home')
+                loader: () => fetch('https://assingment-11-server-seven.vercel.app/services/home')
             },
             {
                 path: '/home',
                 element: <Home></Home>,
-                loader: () => fetch('http://localhost:5000/services/home')
+                loader: () => fetch('https://assingment-11-server-seven.vercel.app/services/home')
             },
             {
                 path: '/services',
                 element: <Services></Services>,
-                loader: () => fetch('http://localhost:5000/services')
+                loader: () => fetch('https://assingment-11-server-seven.vercel.app/services')
+            },
+            {
+                path: '/blog',
+                element: <Blog></Blog>,
             },
             {
                 path: '/reviews',
@@ -41,13 +46,13 @@ export const router = createBrowserRouter([
             {
                 path: '/reviewForm/:id',
                 element: <PrivateRoute><ReviewForm></ReviewForm></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://assingment-11-server-seven.vercel.app/services/${params.id}`),
 
             },
             {
                 path: '/service/:id',
                 element: <PrivateRoute><SingleService></SingleService></PrivateRoute>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`),
+                loader: ({ params }) => fetch(`https://assingment-11-server-seven.vercel.app/services/${params.id}`),
             },
             {
                 path: '/loginForm',

@@ -2,7 +2,7 @@ import useTitle from '../../../../hooks/useTitle';
 
 const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) => {
     useTitle('Reviews')
-    const { _id, serviceName, reviewerName, price, rating, serviceImg, status } = review;
+    const { _id, serviceName, reviewerName, message, price, rating, serviceImg, status } = review;
 
     return (
         <>
@@ -20,6 +20,9 @@ const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) =
                             </p>
                             <p className="text-gray-900 whitespace-no-wrap text-sm">
                                 {reviewerName}
+                            </p>
+                            <p className="text-gray-900 whitespace-no-wrap text-sm">
+                                {message}
                             </p>
                         </div>
                     </div>
