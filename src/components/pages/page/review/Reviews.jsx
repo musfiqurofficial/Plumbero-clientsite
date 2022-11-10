@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import toast, { Toaster } from 'react-hot-toast';
-import { useLoaderData } from 'react-router-dom';
 import Review from './Review';
 
 const Reviews = () => {

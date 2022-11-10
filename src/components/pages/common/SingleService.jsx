@@ -3,7 +3,7 @@ import { useLoaderData } from 'react-router-dom';
 import ReviewForm from '../page/review/ReviewForm';
 
 const SingleService = () => {
-    const { _id, category, serviceName, serviceHolder, position, ratings, price, serviceNumber, img, details } = useLoaderData();
+    const { _id, category, serviceName, serviceHolder, position, ratings, price, img, details } = useLoaderData();
     return (
         <div>
             <section className="bg-gray-200 text-gray-800">
