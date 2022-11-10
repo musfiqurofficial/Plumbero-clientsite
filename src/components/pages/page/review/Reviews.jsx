@@ -1,9 +1,71 @@
 import React, { useEffect, useState } from 'react';
-import { Toaster } from 'react-hot-toast';
+import toast, { Toaster } from 'react-hot-toast';
+import { useLoaderData } from 'react-router-dom';
 import Review from './Review';
 
 const Reviews = () => {
-    const [reviews, setReviews] = useState();
+    const [reviews, setReviews] = useState([]);
+
+    const [storedUser, setStoredUser] = useState({});
+
+    useEffect(() => {
+        fetch('http://localhost:5000/reviews')
+            .then(res => res.json())
+            .then(data => {
+                console.log(data)
+                setStoredUser(data)
+            })
+    }, [])
+
+    console.log(storedUser);
+    const [user, setUser] = useState(storedUser);
+
+    const handleUpdateUser = event => {
+        event.preventDefault();
+        // console.log(user);
+        fetch(`http://localhost:5000/reviews/${storedUser._id}`, {
+            method: 'PUT',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(user)
+        })
+            .then(res => res.json())
+            .then(data => {
+                if (data.modifiedCount > 0) {
+                    alert('user updated')
+                    console.log(data);
+                }
+
+            })
+    }
+
+    const handleInputChange = event => {
+        const field = event.target.name;
+        const value = event.target.value;
+        const newUser = { ...user }
+        newUser[field] = value;
+        setUser(newUser);
+    }
+
+    const handleDelete = id => {
+        const proceed = window.confirm('Are you sure, you want to cancel this order!')
+        if (proceed) {
+            fetch(`http://localhost:5000/reviews/${id}`, {
+                method: 'DELETE'
+            })
+                .then(res => res.json())
+                .then(data => {
+                    console.log(data)
+                    if (data.deletedCount > 0) {
+                        toast.success('Successfully Delete!')
+                        const remaining = reviews.filter(odr => odr._id !== id);
+                        setReviews(remaining);
+                    }
+                })
+        }
+    }
+
     useEffect(() => {
         fetch('http://localhost:5000/reviews')
             .then(res => res.json())
@@ -30,6 +92,9 @@ const Reviews = () => {
                                                 reviews?.map(review => <Review
                                                     key={review._id}
                                                     review={review}
+                                                    handleDelete={handleDelete}
+                                                    handleUpdateUser={handleUpdateUser}
+                                                    handleInputChange={handleInputChange}
                                                 ></Review>)
                                             }
                                         </tbody>

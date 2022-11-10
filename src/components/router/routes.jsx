@@ -8,6 +8,7 @@ import Register from "../pages/common/login/Register";
 import PrivateRoute from "../pages/common/PrivateRoute";
 import SingleService from "../pages/common/SingleService";
 import Home from "../pages/page/Home/Home";
+import Review from "../pages/page/review/Review";
 import ReviewForm from "../pages/page/review/ReviewForm";
 import Reviews from "../pages/page/review/Reviews";
 import Services from "../pages/page/services/Services";
@@ -35,7 +36,7 @@ export const router = createBrowserRouter([
             },
             {
                 path: '/reviews',
-                element: <PrivateRoute><Reviews></Reviews></PrivateRoute>
+                element: <PrivateRoute><Reviews></Reviews></PrivateRoute>,
             },
             {
                 path: '/reviewForm/:id',

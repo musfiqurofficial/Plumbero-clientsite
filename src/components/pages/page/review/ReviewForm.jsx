@@ -5,7 +5,7 @@ import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 
 const ReviewForm = () => {
     const { user } = useContext(AuthContext);
-    const { _id, price, serviceName } = useLoaderData();
+    const { _id, price, serviceName, img } = useLoaderData();
 
     const handlePlaceOrder = event => {
         event.preventDefault();
@@ -25,7 +25,8 @@ const ReviewForm = () => {
             phone,
             rating: rating,
             message,
-            email
+            email,
+            serviceImg: img
         }
 
         fetch('http://localhost:5000/reviews', {
@@ -75,7 +76,7 @@ const ReviewForm = () => {
                     <button type='submit' className="uppercase text-center text-sm font-bold tracking-wide bg-blue-600 hover:bg-blue-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
                         Submit Review
                     </button>
-                    <Link to='/orders' type='submit' className="uppercase text-center text-sm font-bold tracking-wide hover:bg-blue-600 bg-blue-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
+                    <Link to='/reviews' type='submit' className="uppercase text-center text-sm font-bold tracking-wide hover:bg-blue-600 bg-blue-400 text-gray-100 p-3 rounded-lg w-full focus:outline-none focus:shadow-outline">
                         View All Review
                     </Link>
                 </div>

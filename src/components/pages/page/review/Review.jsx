@@ -1,18 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import { useState } from 'react';
 import useTitle from '../../../../hooks/useTitle';
 
-const Review = ({ review }) => {
+const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) => {
     useTitle('Reviews')
-    const { _id, serviceName, reviewerName, price, phone, rating } = review;
-    // const [serviceReview, setServiceReview] = useState;
-    // useEffect(() => {
-    //     fetch('http://localhost:5000/services')
-    //         .then(res => res.json())
-    //         .then(data => {
-    //             console.log(data)
-    //             setServiceReview(data)
-    //         })
-    // }, [])
+    const { _id, serviceName, reviewerName, price, phone, rating, serviceImg, status } = review;
+
     return (
         <>
             <tr>
@@ -20,7 +12,7 @@ const Review = ({ review }) => {
                     <div className="flex items-center">
                         <div className="flex-shrink-0 w-1/4 h-w-1/4">
                             <img className="w-full"
-                                src=''
+                                src={serviceImg}
                                 alt="" />
                         </div>
                         <div className="ml-3">
@@ -30,24 +22,37 @@ const Review = ({ review }) => {
                             <p className="text-gray-900 whitespace-no-wrap text-sm">
                                 {reviewerName}
                             </p>
-                            <p className="text-gray-900 whitespace-no-wrap text-sm">
-                                ID:
-                            </p>
                         </div>
                     </div>
                 </td>
                 <td className="px-5 py-5 border-b border-gray-200 bg-white font-semibold text-lg ">
                     <p className="text-gray-900 whitespace-no-wrap">{price} Taka</p>
+                    <p className="text-gray-900 whitespace-no-wrap">{rating}</p>
                 </td>
                 {/* <td className="font-semibold text-lg  px-5 py-5 border-b border-gray-200 bg-white ">
                     <p className="text-gray-900 whitespace-no-wrap">
                         {service.data}
                     </p>
                 </td> */}
-                {/* <td className="py-10 px-2 border-b border-gray-200 bg-white grid lg:grid-cols-2 gap-3">
-                    <button onClick={() => handleStatusUpdate(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">{status ? status : "Pending"}</button>
+                <td className="py-10 px-2 border-b border-gray-200 bg-white grid lg:grid-cols-2 gap-3">
+                    <label htmlFor="my-modal-3" onClick={() => handleUpdateUser(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">{status ? status : "Pending"}</label>
+
+                    {/* <button onClick={() => handleStatusUpdate(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">{status ? status : "Pending"}</button> */}
                     <button onClick={() => handleDelete(_id)} type="submit" className="w-full px-8 py-3 font-semibold text-lg rounded-md focus:bg-blue-50 active:bg-blue-100 hover:text-white text-black hover:bg-red-600 bg-red-200">Delete</button>
-                </td> */}
+                </td>
+                <input type="checkbox" id="my-modal-3" className="modal-toggle" />
+                <div className="modal">
+                    <div className="modal-box relative">
+                        <label htmlFor="my-modal-3" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
+                        <form onSubmit={handleUpdateUser}>
+                            <input onChange={handleInputChange} type="text" name="serviceName" defaultValue={serviceName} placeholder='' />
+                            <input onChange={handleInputChange} type="text" name="reviewerName" defaultValue={reviewerName} placeholder='' />
+                            <input onChange={handleInputChange} type="text" name="price" defaultValue={price} placeholder='' />
+                            <input onChange={handleInputChange} type="text" name="rating" defaultValue={rating} placeholder='' />
+                            <button type='submit' className='btn'>Submit</button>
+                        </form>
+                    </div>
+                </div>
             </tr>
         </>
     );
