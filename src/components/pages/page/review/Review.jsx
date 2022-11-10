@@ -2,7 +2,7 @@ import useTitle from '../../../../hooks/useTitle';
 
 const Review = ({ review, handleDelete, handleUpdateUser, handleInputChange }) => {
     useTitle('Reviews')
-    const { _id, serviceName, reviewerName, price, phone, rating, serviceImg, status } = review;
+    const { _id, serviceName, reviewerName, price, rating, serviceImg, status } = review;
 
     return (
         <>
