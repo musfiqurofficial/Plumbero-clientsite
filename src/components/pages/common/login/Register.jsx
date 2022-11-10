@@ -1,5 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
+import { setAuthToken } from '../../../../api/auth';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 import RegisterLottie from '../../../lottie/RegisterLottie';
 
@@ -24,7 +25,7 @@ const Register = () => {
         createUser(email, password)
             .then(result => {
                 const user = result.user;
-                console.log(user)
+                setAuthToken(user);
             }).catch(error => console.error(error))
     }
 

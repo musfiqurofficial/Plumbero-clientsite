@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { setAuthToken } from '../../../../api/auth';
 import { AuthContext } from '../../../../AuthProvider/AuthProvider';
 
 const LoginForm = () => {
@@ -12,7 +13,7 @@ const LoginForm = () => {
         loginWithGoogle()
             .then(result => {
                 const user = result.user
-                console.log(user)
+                setAuthToken(user);
                 navigate(from, { replace: true })
             }).catch(error => console.error(error))
     }
@@ -20,7 +21,7 @@ const LoginForm = () => {
         loginWithGitHub()
             .then(result => {
                 const user = result.user
-                console.log(user)
+                setAuthToken(user);
                 navigate(from, { replace: true })
             }).catch(error => console.error(error))
     }
