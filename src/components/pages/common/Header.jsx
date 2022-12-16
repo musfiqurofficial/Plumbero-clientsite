@@ -22,8 +22,8 @@ const Header = () => {
     </>
 
     return (
-        <div className='shadow-md sticky top-0 z-40 bg-white py-3'>
-            <div className="navbar bg-base-100 w-10/12 mx-auto">
+        <div className='shadow-md sticky top-0 z-40 bg-white bg-opacity-60 py-2'>
+            <div className="navbar w-10/12 mx-auto">
                 <div className="navbar-start">
                     <div className="dropdown">
                         <label tabIndex={0} className="btn btn-ghost lg:hidden pl-0">
@@ -41,12 +41,12 @@ const Header = () => {
                     </ul>
                 </div>
                 <div className="navbar-end">
-                    <Link to='/loginForm' className="w-1/3"><ButtonLottie></ButtonLottie></Link>
+                    
                     {
                         user?.uid ?
                             <div className="dropdown dropdown-end">
                                 <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-                                    <div className="w-10 rounded-full">
+                                    <div className="w-full rounded-full">
                                         <img src={user?.photoURL ? user?.photoURL : "https://placeimg.com/80/80/people"} alt='' />
                                     </div>
                                 </label>
@@ -60,11 +60,7 @@ const Header = () => {
                                 </ul>
                             </div>
                             :
-                            <Link to='/login' className="">
-                                <div className='w-10'>
-                                    <UserLottie></UserLottie>
-                                </div>
-                            </Link>
+                            <><Link to='/loginForm' className="bg-blue-700 px-8 py-3 rounded-md text-white hover:bg-blue-900 font-semibold hover:shadow-md">Login</Link></>
                     }
 
                 </div>
