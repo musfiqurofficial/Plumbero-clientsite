@@ -36,7 +36,7 @@ const Header = () => {
                     <Link to='/' className=""><img src="https://demo.bosathemes.com/plumbero/wp-content/uploads/sites/30/2022/06/plumbero-logo.png" alt="" /></Link>
                 </div>
                 <div className="navbar-center hidden lg:flex">
-                    <ul className="menu menu-horizontal p-0 font-semibold">
+                    <ul className="menu menu-horizontal p-0 font-semibold text-lg">
                         {menuItems}
                     </ul>
                 </div>

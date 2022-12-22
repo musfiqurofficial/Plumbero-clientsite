@@ -15,12 +15,12 @@ const AddService = () => {
         console.log(name, details, price, iconURL, photoURL)
 
         const AddService = {
-            name,
+            serviceName: name,
             category,
             details,
             price,
-            photoURL,
-            iconURL
+            img: photoURL,
+            icon: iconURL
         }
 
         fetch('https://assingment-11-server-seven.vercel.app/addService', {
